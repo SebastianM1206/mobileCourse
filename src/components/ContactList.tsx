@@ -4,8 +4,8 @@ interface Contact {
   id: number
   name: string
   phone: string
-}
-
+}  
+ 
 interface ContactListProps {
   contacts: Contact[]
   onDelete: (id: number) => void
