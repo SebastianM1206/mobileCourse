@@ -75,14 +75,14 @@ const LoginPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent fullscreen className="login-content">
-        <div className="login-container">
-          <IonCard className="login-card">
+      <IonContent fullscreen>
+        <div>
+          <IonCard>
             <IonCardContent>
-              <h1 className="login-title">Medicare</h1>
-              <p className="login-subtitle">Médicos en Visita</p>
+              <h1>Medicare</h1>
+              <p>Médicos en Visita</p>
 
-              <div className="login-form">
+              <div>
                 <IonInput
                   label="Email"
                   labelPlacement="stacked"
@@ -90,10 +90,9 @@ const LoginPage: React.FC = () => {
                   placeholder="ingresa tu email"
                   value={email}
                   onIonChange={(e) => setEmail(e.detail.value || '')}
-                  className="login-input"
                 />
 
-                <div className="password-container">
+                <div>
                   <IonInput
                     label="Contraseña"
                     labelPlacement="stacked"
@@ -101,10 +100,8 @@ const LoginPage: React.FC = () => {
                     placeholder="ingresa tu contraseña"
                     value={password}
                     onIonChange={(e) => setPassword(e.detail.value || '')}
-                    className="login-input"
                   />
                   <button
-                    className="password-toggle"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     <IonIcon icon={showPassword ? eyeOff : eye} />
@@ -115,12 +112,11 @@ const LoginPage: React.FC = () => {
                   expand="block"
                   onClick={handleLogin}
                   disabled={loading}
-                  className="login-button"
                 >
                   Iniciar Sesión
                 </IonButton>
 
-                <p className="login-help">
+                <p>
                   <IonText color="medium">
                     Demo: doctor@medicare.com / password123
                   </IonText>
