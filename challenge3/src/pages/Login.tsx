@@ -2,6 +2,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButt
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
+//CHALLENGE 4 LOGIC
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -21,11 +22,11 @@ const Login: React.FC = () => {
       return
     }
 
-    // Store token in localStorage
+    
     localStorage.setItem('logged', 'true')
     localStorage.setItem('userEmail', email)
 
-    // Redirect to listing task page
+    
     history.push('/listing-task')
   }
 

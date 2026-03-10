@@ -57,7 +57,7 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is logged in on app load
+    
     const logged = localStorage.getItem('logged');
     if (logged === 'true') {
       setIsLoggedIn(true);
