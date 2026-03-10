@@ -1,7 +1,7 @@
 import { IonList, IonText, IonListHeader, IonLabel } from '@ionic/react'
 import TaskItem from './TaskItem'
 
-interface Task {
+export interface Task {
   id: number
   title: string
   completed: boolean
@@ -11,9 +11,10 @@ interface TaskListProps {
   tasks: Task[]
   onToggleComplete: (id: number) => void
   onDelete: (id: number) => void
+  onViewDetail: (task: Task) => void
 }
 
-function TaskList({ tasks, onToggleComplete, onDelete }: TaskListProps) {
+function TaskList({ tasks, onToggleComplete, onDelete, onViewDetail }: TaskListProps) {
   const activeTasks = tasks.filter(task => !task.completed)
   const completedTasks = tasks.filter(task => task.completed)
 
@@ -31,11 +32,10 @@ function TaskList({ tasks, onToggleComplete, onDelete }: TaskListProps) {
           {activeTasks.map((task) => (
             <TaskItem
               key={task.id}
-              id={task.id}
-              title={task.title}
-              completed={task.completed}
+              task={task}
               onToggleComplete={onToggleComplete}
               onDelete={onDelete}
+              onViewDetail={onViewDetail}
             />
           ))}
         </IonList>
@@ -50,11 +50,10 @@ function TaskList({ tasks, onToggleComplete, onDelete }: TaskListProps) {
             {completedTasks.map((task) => (
               <TaskItem
                 key={task.id}
-                id={task.id}
-                title={task.title}
-                completed={task.completed}
+                task={task}
                 onToggleComplete={onToggleComplete}
                 onDelete={onDelete}
+                onViewDetail={onViewDetail}
               />
             ))}
           </IonList>

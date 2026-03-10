@@ -48,6 +48,10 @@ function TaskApp() {
     setTasks(tasks.filter(task => task.id !== id))
   }
 
+  const handleViewDetail = (task: Task) => {
+    console.log('View detail:', task)
+  }
+
   if (loading) {
     return <Loader />
   }
@@ -83,7 +87,8 @@ function TaskApp() {
       <TaskList 
         tasks={tasks} 
         onToggleComplete={handleToggleComplete}
-        onDelete={handleDeleteTask} 
+        onDelete={handleDeleteTask}
+        onViewDetail={handleViewDetail}
       />
     </IonContent>
   )
