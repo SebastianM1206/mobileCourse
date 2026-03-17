@@ -3,10 +3,12 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { checkmark, logOut } from 'ionicons/icons'
 import { useTaskContext } from '../context/TaskContext'
+import { useAuthContext } from '../context/AuthContext'
 
 const CreateTask: React.FC = () => {
   const history = useHistory()
   const { addTask } = useTaskContext()
+  const { logout } = useAuthContext()
   const [title, setTitle] = useState('')
 
   const handleAddTask = () => {
@@ -26,9 +28,8 @@ const CreateTask: React.FC = () => {
     history.goBack()
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem('logged')
-    localStorage.removeItem('userEmail')
+  const handleLogout = async () => {
+    await logout()
     history.push('/login')
   }
 

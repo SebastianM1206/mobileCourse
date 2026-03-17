@@ -54,7 +54,7 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
   )
 }
 
-export const useTaskContext = () => {
+export const useTaskContext = () => { //El useContext que normalmente se tira por comodidad, pero en este caso chapeto me dice que hay que tener cuidado con los errores si se usa fuera del provider 
   const context = useContext(TaskContext)
   if (!context) {
     throw new Error('useTaskContext must be used within a TaskProvider')

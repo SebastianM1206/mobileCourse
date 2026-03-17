@@ -2,6 +2,7 @@ import { IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonContent, IonBac
 import { useLocation, useHistory } from 'react-router-dom'
 import { pencil, trash, logOut } from 'ionicons/icons'
 import { useTaskContext, Task } from '../context/TaskContext'
+import { useAuthContext } from '../context/AuthContext'
 
 interface LocationState {
   task?: Task
@@ -11,11 +12,11 @@ const Detail: React.FC = () => {
   const location = useLocation<LocationState>()
   const history = useHistory()
   const { deleteTask } = useTaskContext()
+  const { logout } = useAuthContext()
   const task = location.state?.task
 
-  const handleLogout = () => {
-    localStorage.removeItem('logged')
-    localStorage.removeItem('userEmail')
+  const handleLogout = async () => {
+    await logout()
     history.push('/login')
   }
 

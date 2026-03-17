@@ -5,10 +5,12 @@ import { add, logOut } from 'ionicons/icons'
 import TaskList from '../components/TaskList'
 import Loader from '../components/Loader'
 import { useTaskContext, Task } from '../context/TaskContext'
+import { useAuthContext } from '../context/AuthContext'
 
 const ListingTask: React.FC = () => {
   const history = useHistory()
   const { tasks, deleteTask, toggleComplete } = useTaskContext()
+  const { logout } = useAuthContext()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -33,9 +35,8 @@ const ListingTask: React.FC = () => {
     history.push('/create-task')
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem('logged')
-    localStorage.removeItem('userEmail')
+  const handleLogout = async () => {
+    await logout()
     history.push('/login')
   }
 
