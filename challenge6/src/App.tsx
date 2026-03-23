@@ -1,8 +1,14 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import Home from './pages/Home';
 import ListingTask from './pages/ListingTask';
+import Contacts from './pages/Contacts';
+import Fruits from './pages/Fruits';
 import CreateTask from './pages/CreateTask';
+import EditTask from './pages/EditTask';
+import EditContact from './pages/EditContact';
+import EditFruit from './pages/EditFruit';
 import Detail from './pages/Detail';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -70,17 +76,35 @@ const AppRoutes: React.FC = () => {
         <Route exact path="/register">
           <Register />
         </Route>
+        <ProtectedRoute isLoggedIn={isLoggedIn} path="/home">
+          <Home />
+        </ProtectedRoute>
         <ProtectedRoute isLoggedIn={isLoggedIn} path="/listing-task">
           <ListingTask />
         </ProtectedRoute>
+        <ProtectedRoute isLoggedIn={isLoggedIn} path="/contacts">
+          <Contacts />
+        </ProtectedRoute>
+        <ProtectedRoute isLoggedIn={isLoggedIn} path="/fruits">
+          <Fruits />
+        </ProtectedRoute>
         <ProtectedRoute isLoggedIn={isLoggedIn} path="/create-task">
           <CreateTask />
+        </ProtectedRoute>
+        <ProtectedRoute isLoggedIn={isLoggedIn} path="/edit-task/:id">
+          <EditTask />
+        </ProtectedRoute>
+        <ProtectedRoute isLoggedIn={isLoggedIn} path="/edit-contact/:id">
+          <EditContact />
+        </ProtectedRoute>
+        <ProtectedRoute isLoggedIn={isLoggedIn} path="/edit-fruit/:id">
+          <EditFruit />
         </ProtectedRoute>
         <ProtectedRoute isLoggedIn={isLoggedIn} path="/detail">
           <Detail />
         </ProtectedRoute>
         <Route exact path="/">
-          {isLoggedIn ? <Redirect to="/listing-task" /> : <Redirect to="/login" />}
+          {isLoggedIn ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

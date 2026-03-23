@@ -3,6 +3,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import { pencil, trash, logOut } from 'ionicons/icons'
 import { useTaskContext, Task } from '../context/TaskContext'
 import { useAuthContext } from '../context/AuthContext'
+import useNetwork from '../hooks/useNetwork'
 
 interface LocationState {
   task?: Task
@@ -13,6 +14,7 @@ const Detail: React.FC = () => {
   const history = useHistory()
   const { deleteTask } = useTaskContext()
   const { logout } = useAuthContext()
+  const { isOnline } = useNetwork()
   const task = location.state?.task
 
   const handleLogout = async () => {
@@ -46,12 +48,13 @@ const Detail: React.FC = () => {
   }
 
   const handleDelete = () => {
+    if (!isOnline) return
     deleteTask(task.id)
     history.push('/listing-task')
   }
 
-  const handleGoBack = () => {
-    history.goBack()
+  const handleGoEdit = () => {
+    history.push(`/edit-task/${task.id}`, { task })
   }
 
   return (
@@ -99,13 +102,13 @@ const Detail: React.FC = () => {
             <IonGrid style={{ marginTop: '2rem' }}>
               <IonRow style={{ gap: '1rem' }}>
                 <IonCol>
-                  <IonButton expand="block" color="primary" onClick={handleGoBack}>
+                  <IonButton expand="block" color="primary" onClick={handleGoEdit} disabled={!isOnline}>
                     <IonIcon icon={pencil} slot="start" />
                     Edit
                   </IonButton>
                 </IonCol>
                 <IonCol>
-                  <IonButton expand="block" color="danger" onClick={handleDelete}>
+                  <IonButton expand="block" color="danger" onClick={handleDelete} disabled={!isOnline}>
                     <IonIcon icon={trash} slot="start" />
                     Delete
                   </IonButton>

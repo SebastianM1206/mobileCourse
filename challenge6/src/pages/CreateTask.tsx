@@ -4,21 +4,24 @@ import { useHistory } from 'react-router-dom'
 import { checkmark, logOut } from 'ionicons/icons'
 import { useTaskContext } from '../context/TaskContext'
 import { useAuthContext } from '../context/AuthContext'
+import useNetwork from '../hooks/useNetwork'
 
 const CreateTask: React.FC = () => {
   const history = useHistory()
   const { addTask } = useTaskContext()
   const { logout } = useAuthContext()
+  const { isOnline } = useNetwork()
   const [title, setTitle] = useState('')
 
-  const handleAddTask = () => {
+  const handleAddTask = async () => {
+    if (!isOnline) return
+
     if (title.trim()) {
       const newTask = {
-        id: Date.now(),
         title,
         completed: false
       }
-      addTask(newTask)
+      await addTask(newTask)
       setTitle('')
       history.push('/listing-task')
     }
@@ -69,6 +72,7 @@ const CreateTask: React.FC = () => {
                 expand="block"
                 onClick={handleAddTask}
                 color="primary"
+                disabled={!isOnline || !title.trim()}
               >
                 <IonIcon icon={checkmark} slot="start" />
                 Create Task

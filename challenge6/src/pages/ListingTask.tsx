@@ -1,16 +1,18 @@
-import { IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonIcon, IonContent } from '@ionic/react'
+import { IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonIcon, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText } from '@ionic/react'
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { add, logOut } from 'ionicons/icons'
+import { add, home, logOut } from 'ionicons/icons'
 import TaskList from '../components/TaskList'
 import Loader from '../components/Loader'
-import { useTaskContext, Task } from '../context/TaskContext'
+import { useTaskContext } from '../context/TaskContext'
 import { useAuthContext } from '../context/AuthContext'
+import useNetwork from '../hooks/useNetwork'
 
 const ListingTask: React.FC = () => {
   const history = useHistory()
   const { tasks, deleteTask, toggleComplete } = useTaskContext()
   const { logout } = useAuthContext()
+  const { isOnline } = useNetwork()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -19,15 +21,17 @@ const ListingTask: React.FC = () => {
     }, 500)
   }, [])
 
-  const handleToggleComplete = (id: number) => {
+  const handleToggleComplete = (id: string) => {
+    if (!isOnline) return
     toggleComplete(id)
   }
 
-  const handleDeleteTask = (id: number) => {
+  const handleDeleteTask = (id: string) => {
+    if (!isOnline) return
     deleteTask(id)
   }
 
-  const handleViewDetail = (task: Task) => {
+  const handleViewDetail = (task: any) => {
     history.push('/detail', { task })
   }
 
@@ -51,8 +55,16 @@ const ListingTask: React.FC = () => {
           <IonTitle>Task Manager</IonTitle>
           <IonButton
             slot="end"
+            onClick={() => history.push('/home')}
+            color="medium"
+          >
+            <IonIcon icon={home} />
+          </IonButton>
+          <IonButton
+            slot="end"
             onClick={handleCreateTask}
             color="primary"
+            disabled={!isOnline}
           >
             <IonIcon icon={add} />
           </IonButton>
@@ -66,12 +78,26 @@ const ListingTask: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
+        {!isOnline && (
+          <IonText color="warning">
+            <p>Offline: tasks quedan solo en lectura.</p>
+          </IonText>
+        )}
+
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>Tasks</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
         <TaskList
           tasks={tasks}
           onToggleComplete={handleToggleComplete}
           onDelete={handleDeleteTask}
           onViewDetail={handleViewDetail}
+          isCrudEnabled={isOnline}
         />
+          </IonCardContent>
+        </IonCard>
       </IonContent>
     </IonPage>
   )

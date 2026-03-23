@@ -8,7 +8,7 @@ export function useFirebaseAuth() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (u) => { //El onauthstate changed se usa para suscribirse a los cambios del estado de autenticación de firebase, cuando el user  se loguea o se desloguea
+    const unsub = onAuthStateChanged(auth, (u) => { //El onauthstate changed se usa para suscribirse a los cambios del estado de autenticación de firebase, cuando el user  se loggea o se desloggea
       setUser(u)
       setLoading(false)
     })

@@ -3,14 +3,14 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const history = useHistory()
-  const { login } = useAuthContext()
+  const { register } = useAuthContext()
 
-  const handleLogin = async() => {
+  const handleRegister = async() => {
     setError('')
 
     if (!email || !password) {
@@ -19,23 +19,21 @@ const Login: React.FC = () => {
     }
 
     try{
-      await login(email, password)
-      history.push('/listing-task')  
+      await register(email, password)
+      history.push('/home')
     }catch(err: any){
-      setError('Invalid email or password')
+      setError('Error registering')
       return
     } 
-  }
-
-  const handleGoToRegister = () => {
-    history.push('/register')
+    
+    
   }
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Login</IonTitle>
+          <IonTitle>Register (create new account)</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
@@ -65,12 +63,8 @@ const Login: React.FC = () => {
               </IonText>
             )}
 
-            <IonButton expand="block" color="primary" onClick={handleLogin} style={{ marginTop: '2rem' }}>
-              Login
-            </IonButton>
-
-            <IonButton expand="block" color="secondary" onClick={handleGoToRegister} style={{ marginTop: '1rem' }}>
-              Don't have an account? Register
+            <IonButton expand="block" color="primary" onClick={handleRegister} style={{ marginTop: '2rem' }}>
+              Register
             </IonButton>
           </IonCardContent>
         </IonCard>
@@ -80,4 +74,5 @@ const Login: React.FC = () => {
   )
 }
 
-export default Login
+export default Register
+

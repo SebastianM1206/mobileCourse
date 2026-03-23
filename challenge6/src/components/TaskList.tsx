@@ -2,19 +2,20 @@ import { IonList, IonText, IonListHeader, IonLabel } from '@ionic/react'
 import TaskItem from './TaskItem'
 
 export interface Task {
-  id: number
+  id: string | number
   title: string
   completed: boolean
 }
 
 interface TaskListProps {
   tasks: Task[]
-  onToggleComplete: (id: number) => void
-  onDelete: (id: number) => void
+  onToggleComplete: (id: string) => void
+  onDelete: (id: string) => void
   onViewDetail: (task: Task) => void
+  isCrudEnabled: boolean
 }
 
-function TaskList({ tasks, onToggleComplete, onDelete, onViewDetail }: TaskListProps) {
+function TaskList({ tasks, onToggleComplete, onDelete, onViewDetail, isCrudEnabled }: TaskListProps) {
   const activeTasks = tasks.filter(task => !task.completed)
   const completedTasks = tasks.filter(task => task.completed)
 
@@ -36,6 +37,7 @@ function TaskList({ tasks, onToggleComplete, onDelete, onViewDetail }: TaskListP
               onToggleComplete={onToggleComplete}
               onDelete={onDelete}
               onViewDetail={onViewDetail}
+              isCrudEnabled={isCrudEnabled}
             />
           ))}
         </IonList>
@@ -54,6 +56,7 @@ function TaskList({ tasks, onToggleComplete, onDelete, onViewDetail }: TaskListP
                 onToggleComplete={onToggleComplete}
                 onDelete={onDelete}
                 onViewDetail={onViewDetail}
+                isCrudEnabled={isCrudEnabled}
               />
             ))}
           </IonList>

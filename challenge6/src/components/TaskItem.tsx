@@ -2,25 +2,27 @@ import { IonItem, IonLabel, IonButton, IonCheckbox, IonIcon } from '@ionic/react
 import { eye, trash } from 'ionicons/icons'
 
 export interface Task {
-  id: number
+  id: string | number
   title: string
   completed: boolean
 }
 
 interface TaskItemProps {
   task: Task
-  onToggleComplete: (id: number) => void
-  onDelete: (id: number) => void
+  onToggleComplete: (id: string) => void
+  onDelete: (id: string) => void
   onViewDetail: (task: Task) => void
+  isCrudEnabled: boolean
 }
 
-function TaskItem({ task, onToggleComplete, onDelete, onViewDetail }: TaskItemProps) {
+function TaskItem({ task, onToggleComplete, onDelete, onViewDetail, isCrudEnabled }: TaskItemProps) {
   return (
     <IonItem>
       <IonCheckbox 
         slot="start"
         checked={task.completed}
-        onIonChange={() => onToggleComplete(task.id)}
+        onIonChange={() => onToggleComplete(String(task.id))}
+        disabled={!isCrudEnabled}
       />
       <IonLabel style={{ textDecoration: task.completed ? 'line-through' : 'none', opacity: task.completed ? 0.6 : 1 }}>
         {task.title}
@@ -34,10 +36,11 @@ function TaskItem({ task, onToggleComplete, onDelete, onViewDetail }: TaskItemPr
         <IonIcon icon={eye} />
       </IonButton>
       <IonButton 
-        onClick={() => onDelete(task.id)}
+        onClick={() => onDelete(String(task.id))}
         color="danger"
         slot="end"
         size="small"
+        disabled={!isCrudEnabled}
       >
         <IonIcon icon={trash} />
       </IonButton>
