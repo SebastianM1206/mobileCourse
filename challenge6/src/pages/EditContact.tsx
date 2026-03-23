@@ -77,7 +77,7 @@ const EditContact: React.FC = () => {
       <IonContent className="ion-padding">
         {!isOnline && (
           <IonText color="warning">
-            <p>Offline: no se puede editar contacts.</p>
+            <p>Offline: you cannot edit contacts.</p>
           </IonText>
         )}
 
