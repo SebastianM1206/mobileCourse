@@ -44,7 +44,7 @@ const PushNotificationsPage: React.FC = () => {
           </IonItem>
         </IonList>
 
-        {error && (
+        {Boolean(error) && (
           <IonText color="danger">
             <p style={{ margin: "12px" }}>Error al registrar push notifications.</p>
           </IonText>
