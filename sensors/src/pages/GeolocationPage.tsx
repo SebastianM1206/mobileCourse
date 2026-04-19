@@ -38,7 +38,7 @@ const GeolocationPage: React.FC = () => {
           Detener seguimiento
         </IonButton>
 
-        {error && (
+        {Boolean(error) && (
           <IonText color="danger">
             <p style={{ margin: "12px" }}>Error al obtener ubicación.</p>
           </IonText>

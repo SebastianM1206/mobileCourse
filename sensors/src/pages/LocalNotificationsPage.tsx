@@ -86,7 +86,7 @@ const LocalNotificationsPage: React.FC = () => {
           Cancelar notificación
         </IonButton>
 
-        {error && (
+        {Boolean(error) && (
           <IonText color="danger">
             <p style={{ margin: "12px" }}>Error en notificaciones locales.</p>
           </IonText>

@@ -14,6 +14,8 @@ const sensors = [
   { label: "Dispositivo", path: "/sensor/device" },
   { label: "Sistema de archivos", path: "/sensor/filesystem" },
   { label: "Geolocalización", path: "/sensor/geolocation" },
+  { label: "Mapa inteligente", path: "/sensor/map-tracking" },
+  { label: "Historial de recorridos", path: "/sensor/map-history" },
   { label: "Hápticos", path: "/sensor/haptics" },
   { label: "Notificaciones locales", path: "/sensor/local-notifications" },
   { label: "Push notifications", path: "/sensor/push-notifications" },

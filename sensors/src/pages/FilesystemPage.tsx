@@ -97,7 +97,7 @@ const FilesystemPage: React.FC = () => {
           </IonText>
         )}
 
-        {error && (
+        {Boolean(error) && (
           <IonText color="danger">
             <p style={{ margin: "12px" }}>Error en operación de filesystem.</p>
           </IonText>

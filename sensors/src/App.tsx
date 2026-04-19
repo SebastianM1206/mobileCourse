@@ -10,6 +10,8 @@ import GeolocationPage from './pages/GeolocationPage';
 import HapticsPage from './pages/HapticsPage';
 import LocalNotificationsPage from './pages/LocalNotificationsPage';
 import PushNotificationsPage from './pages/PushNotificationsPage';
+import MapTrackingPage from './pages/MapTrackingPage';
+import MapHistoryPage from './pages/MapHistoryPage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -64,6 +66,12 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/sensor/geolocation">
           <GeolocationPage />
+        </Route>
+        <Route exact path="/sensor/map-tracking">
+          <MapTrackingPage />
+        </Route>
+        <Route exact path="/sensor/map-history">
+          <MapHistoryPage />
         </Route>
         <Route exact path="/sensor/haptics">
           <HapticsPage />

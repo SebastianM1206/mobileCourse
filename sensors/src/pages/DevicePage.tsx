@@ -38,7 +38,7 @@ const DevicePage: React.FC = () => {
           </IonText>
         )}
 
-        {error && (
+        {Boolean(error) && (
           <IonText color="danger">
             <p style={{ margin: "12px" }}>Error al leer información del dispositivo.</p>
           </IonText>

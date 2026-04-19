@@ -1,0 +1,19 @@
+.map-history-content {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 18px;
+}
+
+.history-summary-card {
+  margin-bottom: 12px;
+}
+
+.history-action-button {
+  margin-top: 10px;
+}
+
+.history-message {
+  margin: 12px 4px;
+  color: var(--ion-color-medium-shade);
+}
