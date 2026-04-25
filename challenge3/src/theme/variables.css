@@ -1,2 +1,36 @@
-/* For information on how to create your own theme, please refer to:
-http://ionicframework.com/docs/theming/ */
+@import "tailwindcss";
+
+/* ── Design tokens ──────────────────────────────── */
+:root {
+  --color-lime: #c9f158;
+  --color-dark: #202020;
+  --color-bg:   #f2f3f5;
+}
+
+/* ── Global font ────────────────────────────────── */
+* {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ── Ionic overrides ────────────────────────────── */
+ion-content {
+  --background: #f2f3f5;
+  --color: #202020;
+}
+
+ion-app {
+  background: #f2f3f5;
+}
+
+ion-page {
+  background: transparent;
+}
+
+/* ── Safe-area utilities ────────────────────────── */
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top), 48px);
+}
+
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 24px);
+}
