@@ -1,7 +1,11 @@
-function Loader() {
+interface LoaderProps {
+  message?: string
+}
+
+function Loader({ message = 'Cargando...' }: LoaderProps) {
   return (
     <div className="p-5 text-center">
-      <p className="text-lg text-gray-600">Loading contacts...</p>
+      <p className="text-lg text-slate-600">{message}</p>
     </div>
   )
 }

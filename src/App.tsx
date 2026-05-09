@@ -1,7 +1,7 @@
-import ContactApp from './components/ContactApp'
+import PostsApp from './components/PostsApp'
 
 function App() {
-  return <ContactApp />
+  return <PostsApp />
 }
 
 export default App

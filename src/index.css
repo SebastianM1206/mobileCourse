@@ -1,1 +1,29 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Code+Pro:wght@400;600&display=swap");
+
+:root {
+	--ink: #0f172a;
+	--muted: #64748b;
+	--accent: #0f766e;
+	--surface: #ffffff;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	font-family: "Space Grotesk", "Segoe UI", sans-serif;
+	color: var(--ink);
+	background: radial-gradient(circle at top, #fef3c7, transparent 55%),
+		radial-gradient(circle at 20% 20%, #e0f2fe, transparent 45%),
+		#f8fafc;
+}
+
+code,
+pre {
+	font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
+}
